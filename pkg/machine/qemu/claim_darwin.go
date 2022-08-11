@@ -2,7 +2,6 @@ package qemu
 
 import (
 	"fmt"
-	"io/ioutil"
 	"net"
 	"os"
 	"os/user"
@@ -43,7 +42,7 @@ func claimDockerSock() bool {
 		return false
 	}
 	_ = con.SetReadDeadline(time.Now().Add(time.Second * 5))
-	read, err := ioutil.ReadAll(con)
+	read, err := io.ReadAll(con)
 
 	return err == nil && string(read) == "OK"
 }
